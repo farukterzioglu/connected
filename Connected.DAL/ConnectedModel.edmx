@@ -1,0 +1,644 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ConnectedModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="ActivityTypeId" Type="int" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ActivityType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Adjustable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="IdentifierName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdjustableType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Capacity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemOn" Type="bit" />
+          <Property Name="ItemOff" Type="bit" />
+          <Property Name="HasAdjustables" Type="bit" />
+          <Property Name="Readable" Type="bit" />
+        </EntityType>
+        <EntityType Name="Fridge">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="FridgeBrand" Type="nvarchar" MaxLength="50" />
+          <Property Name="FridgeMake" Type="nvarchar" MaxLength="50" />
+          <Property Name="FridgeModel" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductionDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="HasFreezer" Type="bit" />
+          <Property Name="Width" Type="smallint" />
+          <Property Name="Height" Type="smallint" />
+          <Property Name="Length" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemTypeId" Type="int" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CapacityId" Type="int" />
+          <Property Name="RegistrationId" Type="int" />
+          <Property Name="OriginalId" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+          <Property Name="AccessURL" Type="nvarchar" MaxLength="50" />
+          <Property Name="isRestful" Type="bit" />
+          <Property Name="RegistrationKey" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ItemType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Activity_ActivityType">
+          <End Role="ActivityType" Type="Self.ActivityType" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ActivityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adjustable_AdjustableType">
+          <End Role="AdjustableType" Type="Self.AdjustableType" Multiplicity="1" />
+          <End Role="Adjustable" Type="Self.Adjustable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdjustableType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Adjustable">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adjustable_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Adjustable" Type="Self.Adjustable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Adjustable">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fridge_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Fridge" Type="Self.Fridge" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fridge">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Capacity">
+          <End Role="Capacity" Type="Self.Capacity" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Capacity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="CapacityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ItemRegistration">
+          <End Role="ItemRegistration" Type="Self.ItemRegistration" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemRegistration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="RegistrationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ItemType">
+          <End Role="ItemType" Type="Self.ItemType" Multiplicity="1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="ItemTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ConnectedModelStoreContainer">
+          <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityType" EntityType="Self.ActivityType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Adjustable" EntityType="Self.Adjustable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdjustableType" EntityType="Self.AdjustableType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Capacity" EntityType="Self.Capacity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fridge" EntityType="Self.Fridge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemRegistration" EntityType="Self.ItemRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemType" EntityType="Self.ItemType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Activity_ActivityType" Association="Self.FK_Activity_ActivityType">
+            <End Role="ActivityType" EntitySet="ActivityType" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activity_Item" Association="Self.FK_Activity_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adjustable_AdjustableType" Association="Self.FK_Adjustable_AdjustableType">
+            <End Role="AdjustableType" EntitySet="AdjustableType" />
+            <End Role="Adjustable" EntitySet="Adjustable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adjustable_Item" Association="Self.FK_Adjustable_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Adjustable" EntitySet="Adjustable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fridge_Item" Association="Self.FK_Fridge_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Fridge" EntitySet="Fridge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Capacity" Association="Self.FK_Item_Capacity">
+            <End Role="Capacity" EntitySet="Capacity" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ItemRegistration" Association="Self.FK_Item_ItemRegistration">
+            <End Role="ItemRegistration" EntitySet="ItemRegistration" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ItemType" Association="Self.FK_Item_ItemType">
+            <End Role="ItemType" EntitySet="ItemType" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ConnectedModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ConnectedEntities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="Capacity" EntityType="ConnectedModel.Capacity" />
+          <EntitySet Name="Fridge" EntityType="ConnectedModel.Fridge" />
+          <EntitySet Name="Item" EntityType="ConnectedModel.Item" />
+          <EntitySet Name="ItemRegistration" EntityType="ConnectedModel.ItemRegistration" />
+          <EntitySet Name="ItemType" EntityType="ConnectedModel.ItemType" />
+          <EntitySet Name="sysdiagrams" EntityType="ConnectedModel.sysdiagrams" />
+          <AssociationSet Name="FK_Item_Capacity" Association="ConnectedModel.FK_Item_Capacity">
+            <End Role="Capacity" EntitySet="Capacity" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fridge_Item" Association="ConnectedModel.FK_Fridge_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Fridge" EntitySet="Fridge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ItemRegistration" Association="ConnectedModel.FK_Item_ItemRegistration">
+            <End Role="ItemRegistration" EntitySet="ItemRegistration" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_ItemType" Association="ConnectedModel.FK_Item_ItemType">
+            <End Role="ItemType" EntitySet="ItemType" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <EntitySet Name="ActivityType" EntityType="ConnectedModel.ActivityType" />
+          <EntitySet Name="Activity" EntityType="ConnectedModel.Activity" />
+          <AssociationSet Name="FK_Activity_ActivityType" Association="ConnectedModel.FK_Activity_ActivityType">
+            <End Role="ActivityType" EntitySet="ActivityType" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activity_Item" Association="ConnectedModel.FK_Activity_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <EntitySet Name="Adjustable" EntityType="ConnectedModel.Adjustable" />
+          <AssociationSet Name="FK_Adjustable_Item" Association="ConnectedModel.FK_Adjustable_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Adjustable" EntitySet="Adjustable" />
+          </AssociationSet>
+          <EntitySet Name="AdjustableType" EntityType="ConnectedModel.AdjustableType" />
+          <AssociationSet Name="FK_Adjustable_AdjustableType" Association="ConnectedModel.FK_Adjustable_AdjustableType">
+            <End Role="AdjustableType" EntitySet="AdjustableType" />
+            <End Role="Adjustable" EntitySet="Adjustable" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Capacity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemOn" Type="Boolean" />
+          <Property Name="ItemOff" Type="Boolean" />
+          <Property Name="HasAdjustables" Type="Boolean" />
+          <Property Name="Readable" Type="Boolean" />
+          <NavigationProperty Name="Item" Relationship="ConnectedModel.FK_Item_Capacity" FromRole="Capacity" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Fridge">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="FridgeBrand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FridgeMake" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FridgeModel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductionDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HasFreezer" Type="Boolean" />
+          <Property Name="Width" Type="Int16" />
+          <Property Name="Height" Type="Int16" />
+          <Property Name="Length" Type="Int16" />
+          <NavigationProperty Name="Item" Relationship="ConnectedModel.FK_Fridge_Item" FromRole="Fridge" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CapacityId" Type="Int32" />
+          <Property Name="RegistrationId" Type="Int32" />
+          <Property Name="OriginalId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Capacity" Relationship="ConnectedModel.FK_Item_Capacity" FromRole="Item" ToRole="Capacity" />
+          <NavigationProperty Name="Fridge" Relationship="ConnectedModel.FK_Fridge_Item" FromRole="Item" ToRole="Fridge" />
+          <NavigationProperty Name="ItemRegistration" Relationship="ConnectedModel.FK_Item_ItemRegistration" FromRole="Item" ToRole="ItemRegistration" />
+          <NavigationProperty Name="ItemType" Relationship="ConnectedModel.FK_Item_ItemType" FromRole="Item" ToRole="ItemType" />
+          <NavigationProperty Name="Activity" Relationship="ConnectedModel.FK_Activity_Item" FromRole="Item" ToRole="Activity" />
+          <NavigationProperty Name="Adjustable" Relationship="ConnectedModel.FK_Adjustable_Item" FromRole="Item" ToRole="Adjustable" />
+        </EntityType>
+        <EntityType Name="ItemRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AccessURL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isRestful" Type="Boolean" />
+          <Property Name="RegistrationKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Item" Relationship="ConnectedModel.FK_Item_ItemRegistration" FromRole="ItemRegistration" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="ItemType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Item" Relationship="ConnectedModel.FK_Item_ItemType" FromRole="ItemType" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Item_Capacity">
+          <End Type="ConnectedModel.Capacity" Role="Capacity" Multiplicity="0..1" />
+          <End Type="ConnectedModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Capacity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="CapacityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fridge_Item">
+          <End Type="ConnectedModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="ConnectedModel.Fridge" Role="Fridge" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fridge">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ItemRegistration">
+          <End Type="ConnectedModel.ItemRegistration" Role="ItemRegistration" Multiplicity="0..1" />
+          <End Type="ConnectedModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemRegistration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="RegistrationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_ItemType">
+          <End Type="ConnectedModel.ItemType" Role="ItemType" Multiplicity="1" />
+          <End Type="ConnectedModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="ItemTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ActivityType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Activity" Relationship="ConnectedModel.FK_Activity_ActivityType" FromRole="ActivityType" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="ActivityTypeId" Type="Int32" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ActivityType" Relationship="ConnectedModel.FK_Activity_ActivityType" FromRole="Activity" ToRole="ActivityType" />
+          <NavigationProperty Name="Item" Relationship="ConnectedModel.FK_Activity_Item" FromRole="Activity" ToRole="Item" />
+        </EntityType>
+        <Association Name="FK_Activity_ActivityType">
+          <End Type="ConnectedModel.ActivityType" Role="ActivityType" Multiplicity="1" />
+          <End Type="ConnectedModel.Activity" Role="Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ActivityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_Item">
+          <End Type="ConnectedModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="ConnectedModel.Activity" Role="Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Adjustable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdentifierName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Item" Relationship="ConnectedModel.FK_Adjustable_Item" FromRole="Adjustable" ToRole="Item" />
+          <NavigationProperty Name="AdjustableType" Relationship="ConnectedModel.FK_Adjustable_AdjustableType" FromRole="Adjustable" ToRole="AdjustableType" />
+        </EntityType>
+        <Association Name="FK_Adjustable_Item">
+          <End Type="ConnectedModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="ConnectedModel.Adjustable" Role="Adjustable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Adjustable">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AdjustableType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Adjustable" Relationship="ConnectedModel.FK_Adjustable_AdjustableType" FromRole="AdjustableType" ToRole="Adjustable" />
+        </EntityType>
+        <Association Name="FK_Adjustable_AdjustableType">
+          <End Type="ConnectedModel.AdjustableType" Role="AdjustableType" Multiplicity="1" />
+          <End Type="ConnectedModel.Adjustable" Role="Adjustable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdjustableType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Adjustable">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ConnectedModelStoreContainer" CdmEntityContainer="ConnectedEntities">
+          <EntitySetMapping Name="Capacity">
+            <EntityTypeMapping TypeName="ConnectedModel.Capacity">
+              <MappingFragment StoreEntitySet="Capacity">
+                <ScalarProperty Name="Readable" ColumnName="Readable" />
+                <ScalarProperty Name="HasAdjustables" ColumnName="HasAdjustables" />
+                <ScalarProperty Name="ItemOff" ColumnName="ItemOff" />
+                <ScalarProperty Name="ItemOn" ColumnName="ItemOn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fridge">
+            <EntityTypeMapping TypeName="ConnectedModel.Fridge">
+              <MappingFragment StoreEntitySet="Fridge">
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="HasFreezer" ColumnName="HasFreezer" />
+                <ScalarProperty Name="ProductionDate" ColumnName="ProductionDate" />
+                <ScalarProperty Name="FridgeModel" ColumnName="FridgeModel" />
+                <ScalarProperty Name="FridgeMake" ColumnName="FridgeMake" />
+                <ScalarProperty Name="FridgeBrand" ColumnName="FridgeBrand" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item">
+            <EntityTypeMapping TypeName="ConnectedModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="OriginalId" ColumnName="OriginalId" />
+                <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
+                <ScalarProperty Name="CapacityId" ColumnName="CapacityId" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemTypeId" ColumnName="ItemTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemRegistration">
+            <EntityTypeMapping TypeName="ConnectedModel.ItemRegistration">
+              <MappingFragment StoreEntitySet="ItemRegistration">
+                <ScalarProperty Name="RegistrationKey" ColumnName="RegistrationKey" />
+                <ScalarProperty Name="isRestful" ColumnName="isRestful" />
+                <ScalarProperty Name="AccessURL" ColumnName="AccessURL" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemType">
+            <EntityTypeMapping TypeName="ConnectedModel.ItemType">
+              <MappingFragment StoreEntitySet="ItemType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ConnectedModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityType">
+            <EntityTypeMapping TypeName="ConnectedModel.ActivityType">
+              <MappingFragment StoreEntitySet="ActivityType">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Activity">
+            <EntityTypeMapping TypeName="ConnectedModel.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="ActivityTypeId" ColumnName="ActivityTypeId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adjustable">
+            <EntityTypeMapping TypeName="ConnectedModel.Adjustable">
+              <MappingFragment StoreEntitySet="Adjustable">
+                <ScalarProperty Name="IdentifierName" ColumnName="IdentifierName" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdjustableType">
+            <EntityTypeMapping TypeName="ConnectedModel.AdjustableType">
+              <MappingFragment StoreEntitySet="AdjustableType">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

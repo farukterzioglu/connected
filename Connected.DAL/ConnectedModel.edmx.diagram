@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f3b656b054b843ef9fb25bac53ef81e9" Name="Diagram1">
+        <EntityTypeShape EntityType="ConnectedModel.Capacity" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="ConnectedModel.Fridge" Width="1.5" PointX="5.25" PointY="11.25" />
+        <EntityTypeShape EntityType="ConnectedModel.Item" Width="1.5" PointX="3" PointY="4.375" />
+        <EntityTypeShape EntityType="ConnectedModel.ItemRegistration" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="ConnectedModel.ItemType" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="ConnectedModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="0.75" />
+        <AssociationConnector Association="ConnectedModel.FK_Item_Capacity" />
+        <AssociationConnector Association="ConnectedModel.FK_Fridge_Item" />
+        <AssociationConnector Association="ConnectedModel.FK_Item_ItemRegistration" />
+        <AssociationConnector Association="ConnectedModel.FK_Item_ItemType" />
+        <EntityTypeShape EntityType="ConnectedModel.ActivityType" Width="1.5" PointX="7.375" PointY="8.875" />
+        <EntityTypeShape EntityType="ConnectedModel.Activity" Width="1.5" PointX="10.625" PointY="6.25" />
+        <AssociationConnector Association="ConnectedModel.FK_Activity_ActivityType" />
+        <AssociationConnector Association="ConnectedModel.FK_Activity_Item" />
+        <EntityTypeShape EntityType="ConnectedModel.Adjustable" Width="1.5" PointX="5.25" PointY="4.625" />
+        <AssociationConnector Association="ConnectedModel.FK_Adjustable_Item" />
+        <EntityTypeShape EntityType="ConnectedModel.AdjustableType" Width="1.5" PointX="3.375" PointY="0.875" />
+        <AssociationConnector Association="ConnectedModel.FK_Adjustable_AdjustableType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

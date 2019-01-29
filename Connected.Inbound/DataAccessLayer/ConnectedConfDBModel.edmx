@@ -1,0 +1,855 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ConnectedConfModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdapterBasic">
+          <Key>
+            <PropertyRef Name="AdapterId" />
+          </Key>
+          <Property Name="AdapterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdapterName" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="AdapterTypeId" Type="int" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdapterMessageType">
+          <Key>
+            <PropertyRef Name="AdapterId" />
+            <PropertyRef Name="MessageTypeId" />
+          </Key>
+          <Property Name="AdapterId" Type="int" Nullable="false" />
+          <Property Name="MessageTypeId" Type="int" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AdapterTypeDIM">
+          <Key>
+            <PropertyRef Name="AdapterTypeId" />
+          </Key>
+          <Property Name="AdapterTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdapterType" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ConnectedSettings">
+          <Key>
+            <PropertyRef Name="ConnectedSettingsId" />
+          </Key>
+          <Property Name="ConnectedSettingsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SettingsKey" Type="varchar" MaxLength="256" />
+          <Property Name="SettingsValue" Type="varchar(max)" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="CreatedDateTimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifiedDateTimeStamp" Type="datetime" />
+          <Property Name="ModifiedUserId" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MessageSubscriptionDetails">
+          <Key>
+            <PropertyRef Name="AdapterId" />
+            <PropertyRef Name="MessageTypeId" />
+          </Key>
+          <Property Name="AdapterId" Type="int" Nullable="false" />
+          <Property Name="MessageTypeId" Type="int" Nullable="false" />
+          <Property Name="SubscriptionCriteria" Type="xml" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MessageType">
+          <Key>
+            <PropertyRef Name="MessageTypeId" />
+          </Key>
+          <Property Name="MessageTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageType" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="MessageSchema" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="UniqueIdentifierColumn" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="ReceiveAdapterDetails">
+          <Key>
+            <PropertyRef Name="AdapterId" />
+          </Key>
+          <Property Name="AdapterId" Type="int" Nullable="false" />
+          <Property Name="AdapterServiceURI" Type="varchar" MaxLength="4096" Nullable="false" />
+          <Property Name="AdapterServiceOperation" Type="varchar" MaxLength="256" />
+          <Property Name="IsWCFService" Type="bit" Nullable="false" />
+          <Property Name="TimesToRetry" Type="int" />
+          <Property Name="RetryInterval" Type="int" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ConnectedConf.dbo.AdaptersView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="AdaptersView">
+          <Key>
+            <PropertyRef Name="AdapterId" />
+            <PropertyRef Name="AdapterName" />
+            <PropertyRef Name="AdapterTypeId" />
+          </Key>
+          <Property Name="AdapterId" Type="int" Nullable="false" />
+          <Property Name="AdapterName" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="AdapterTypeId" Type="int" Nullable="false" />
+          <Property Name="AdapterType" Type="varchar" MaxLength="64" />
+          <Property Name="MessageTypeId" Type="int" />
+          <Property Name="MessageType" Type="varchar" MaxLength="1024" />
+          <Property Name="MessageSchema" Type="varchar" MaxLength="255" />
+          <Property Name="AdapterServiceURI" Type="varchar" MaxLength="4096" />
+          <Property Name="IsWCFService" Type="bit" />
+          <Property Name="AdapterServiceOperation" Type="varchar" MaxLength="256" />
+          <Property Name="TimesToRetry" Type="int" />
+          <Property Name="RetryInterval" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ConnectedConf.dbo.ConnectedSettingsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ConnectedSettingsView">
+          <Key>
+            <PropertyRef Name="ConnectedSettingsId" />
+            <PropertyRef Name="CreatedDateTimeStamp" />
+            <PropertyRef Name="CreatedUserId" />
+          </Key>
+          <Property Name="ConnectedSettingsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SettingsKey" Type="varchar" MaxLength="256" />
+          <Property Name="SettingsValue" Type="varchar(max)" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="CreatedDateTimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifiedDateTimeStamp" Type="datetime" />
+          <Property Name="ModifiedUserId" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_AdapterBasic_AdapterTypeDIM">
+          <End Role="AdapterTypeDIM" Type="Self.AdapterTypeDIM" Multiplicity="1" />
+          <End Role="AdapterBasic" Type="Self.AdapterBasic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdapterTypeDIM">
+              <PropertyRef Name="AdapterTypeId" />
+            </Principal>
+            <Dependent Role="AdapterBasic">
+              <PropertyRef Name="AdapterTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdapterMessageType_AdapterBasic">
+          <End Role="AdapterBasic" Type="Self.AdapterBasic" Multiplicity="1" />
+          <End Role="AdapterMessageType" Type="Self.AdapterMessageType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdapterBasic">
+              <PropertyRef Name="AdapterId" />
+            </Principal>
+            <Dependent Role="AdapterMessageType">
+              <PropertyRef Name="AdapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdapterMessageType_MessageType">
+          <End Role="MessageType" Type="Self.MessageType" Multiplicity="1" />
+          <End Role="AdapterMessageType" Type="Self.AdapterMessageType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageType">
+              <PropertyRef Name="MessageTypeId" />
+            </Principal>
+            <Dependent Role="AdapterMessageType">
+              <PropertyRef Name="MessageTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageSubscriptionDetails_AdapterBasic">
+          <End Role="AdapterBasic" Type="Self.AdapterBasic" Multiplicity="1" />
+          <End Role="MessageSubscriptionDetails" Type="Self.MessageSubscriptionDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdapterBasic">
+              <PropertyRef Name="AdapterId" />
+            </Principal>
+            <Dependent Role="MessageSubscriptionDetails">
+              <PropertyRef Name="AdapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageSubscriptionDetails_MessageType">
+          <End Role="MessageType" Type="Self.MessageType" Multiplicity="1" />
+          <End Role="MessageSubscriptionDetails" Type="Self.MessageSubscriptionDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageType">
+              <PropertyRef Name="MessageTypeId" />
+            </Principal>
+            <Dependent Role="MessageSubscriptionDetails">
+              <PropertyRef Name="MessageTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiveAdapterDetails_AdapterBasic">
+          <End Role="AdapterBasic" Type="Self.AdapterBasic" Multiplicity="1" />
+          <End Role="ReceiveAdapterDetails" Type="Self.ReceiveAdapterDetails" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AdapterBasic">
+              <PropertyRef Name="AdapterId" />
+            </Principal>
+            <Dependent Role="ReceiveAdapterDetails">
+              <PropertyRef Name="AdapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_Add_Adapter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AdapterName" Type="varchar" Mode="In" />
+          <Parameter Name="AdapterType" Type="varchar" Mode="In" />
+          <Parameter Name="MessageType" Type="varchar" Mode="In" />
+          <Parameter Name="MessageSchema" Type="varchar" Mode="In" />
+          <Parameter Name="IsReceiveAdapter" Type="bit" Mode="In" />
+          <Parameter Name="AdapterServiceURI" Type="varchar" Mode="In" />
+          <Parameter Name="AdapterServiceOperation" Type="varchar" Mode="In" />
+          <Parameter Name="IsWCFService" Type="bit" Mode="In" />
+          <Parameter Name="TimesToRetry" Type="int" Mode="In" />
+          <Parameter Name="RetryInterval" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Delete_Adapter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AdapterId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Get_Adapters" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SortColumn" Type="varchar" Mode="In" />
+          <Parameter Name="SortOrder" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_Get_SettingByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SettingsId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Get_Settings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RowStartIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="SearchText" Type="varchar" Mode="In" />
+          <Parameter Name="SortColumn" Type="varchar" Mode="In" />
+          <Parameter Name="SortOrder" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_Get_Subscribers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_GetAdaptersByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AdapterId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Update_Adapter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AdapterId" Type="int" Mode="In" />
+          <Parameter Name="AdapterName" Type="varchar" Mode="In" />
+          <Parameter Name="MessageTypeId" Type="int" Mode="In" />
+          <Parameter Name="MessageType" Type="varchar" Mode="In" />
+          <Parameter Name="MessageSchema" Type="varchar" Mode="In" />
+          <Parameter Name="IsReceiveAdapter" Type="bit" Mode="In" />
+          <Parameter Name="AdapterServiceURI" Type="varchar" Mode="In" />
+          <Parameter Name="AdapterServiceOperation" Type="varchar" Mode="In" />
+          <Parameter Name="IsWCFService" Type="bit" Mode="In" />
+          <Parameter Name="TimesToRetry" Type="int" Mode="In" />
+          <Parameter Name="RetryInterval" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_Update_Setting" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SettingsId" Type="int" Mode="In" />
+          <Parameter Name="SettingsKey" Type="varchar" Mode="In" />
+          <Parameter Name="SettingsValue" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Description" Type="varchar(max)" Mode="In" />
+          <Parameter Name="ModifiedUserId" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ConnectedConfModelStoreContainer">
+          <EntitySet Name="AdapterBasic" EntityType="Self.AdapterBasic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdapterMessageType" EntityType="Self.AdapterMessageType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdapterTypeDIM" EntityType="Self.AdapterTypeDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConnectedSettings" EntityType="Self.ConnectedSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageSubscriptionDetails" EntityType="Self.MessageSubscriptionDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageType" EntityType="Self.MessageType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReceiveAdapterDetails" EntityType="Self.ReceiveAdapterDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdaptersView" EntityType="Self.AdaptersView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AdaptersView].[AdapterId] AS [AdapterId], 
+    [AdaptersView].[AdapterName] AS [AdapterName], 
+    [AdaptersView].[AdapterTypeId] AS [AdapterTypeId], 
+    [AdaptersView].[AdapterType] AS [AdapterType], 
+    [AdaptersView].[MessageTypeId] AS [MessageTypeId], 
+    [AdaptersView].[MessageType] AS [MessageType], 
+    [AdaptersView].[MessageSchema] AS [MessageSchema], 
+    [AdaptersView].[AdapterServiceURI] AS [AdapterServiceURI], 
+    [AdaptersView].[IsWCFService] AS [IsWCFService], 
+    [AdaptersView].[AdapterServiceOperation] AS [AdapterServiceOperation], 
+    [AdaptersView].[TimesToRetry] AS [TimesToRetry], 
+    [AdaptersView].[RetryInterval] AS [RetryInterval]
+    FROM [dbo].[AdaptersView] AS [AdaptersView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ConnectedSettingsView" EntityType="Self.ConnectedSettingsView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ConnectedSettingsView].[ConnectedSettingsId] AS [ConnectedSettingsId], 
+    [ConnectedSettingsView].[SettingsKey] AS [SettingsKey], 
+    [ConnectedSettingsView].[SettingsValue] AS [SettingsValue], 
+    [ConnectedSettingsView].[Description] AS [Description], 
+    [ConnectedSettingsView].[CreatedDateTimeStamp] AS [CreatedDateTimeStamp], 
+    [ConnectedSettingsView].[CreatedUserId] AS [CreatedUserId], 
+    [ConnectedSettingsView].[ModifiedDateTimeStamp] AS [ModifiedDateTimeStamp], 
+    [ConnectedSettingsView].[ModifiedUserId] AS [ModifiedUserId]
+    FROM [dbo].[ConnectedSettingsView] AS [ConnectedSettingsView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AdapterBasic_AdapterTypeDIM" Association="Self.FK_AdapterBasic_AdapterTypeDIM">
+            <End Role="AdapterTypeDIM" EntitySet="AdapterTypeDIM" />
+            <End Role="AdapterBasic" EntitySet="AdapterBasic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdapterMessageType_AdapterBasic" Association="Self.FK_AdapterMessageType_AdapterBasic">
+            <End Role="AdapterBasic" EntitySet="AdapterBasic" />
+            <End Role="AdapterMessageType" EntitySet="AdapterMessageType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdapterMessageType_MessageType" Association="Self.FK_AdapterMessageType_MessageType">
+            <End Role="MessageType" EntitySet="MessageType" />
+            <End Role="AdapterMessageType" EntitySet="AdapterMessageType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageSubscriptionDetails_AdapterBasic" Association="Self.FK_MessageSubscriptionDetails_AdapterBasic">
+            <End Role="AdapterBasic" EntitySet="AdapterBasic" />
+            <End Role="MessageSubscriptionDetails" EntitySet="MessageSubscriptionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageSubscriptionDetails_MessageType" Association="Self.FK_MessageSubscriptionDetails_MessageType">
+            <End Role="MessageType" EntitySet="MessageType" />
+            <End Role="MessageSubscriptionDetails" EntitySet="MessageSubscriptionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiveAdapterDetails_AdapterBasic" Association="Self.FK_ReceiveAdapterDetails_AdapterBasic">
+            <End Role="AdapterBasic" EntitySet="AdapterBasic" />
+            <End Role="ReceiveAdapterDetails" EntitySet="ReceiveAdapterDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ConnectedConfModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdapterBasic">
+          <Key>
+            <PropertyRef Name="AdapterId" />
+          </Key>
+          <Property Name="AdapterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdapterName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AdapterTypeId" Type="Int32" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AdapterTypeDIM" Relationship="Self.FK_AdapterBasic_AdapterTypeDIM" FromRole="AdapterBasic" ToRole="AdapterTypeDIM" />
+          <NavigationProperty Name="AdapterMessageType" Relationship="Self.FK_AdapterMessageType_AdapterBasic" FromRole="AdapterBasic" ToRole="AdapterMessageType" />
+          <NavigationProperty Name="MessageSubscriptionDetails" Relationship="Self.FK_MessageSubscriptionDetails_AdapterBasic" FromRole="AdapterBasic" ToRole="MessageSubscriptionDetails" />
+          <NavigationProperty Name="ReceiveAdapterDetails" Relationship="Self.FK_ReceiveAdapterDetails_AdapterBasic" FromRole="AdapterBasic" ToRole="ReceiveAdapterDetails" />
+        </EntityType>
+        <EntityType Name="AdapterMessageType">
+          <Key>
+            <PropertyRef Name="AdapterId" />
+            <PropertyRef Name="MessageTypeId" />
+          </Key>
+          <Property Name="AdapterId" Type="Int32" Nullable="false" />
+          <Property Name="MessageTypeId" Type="Int32" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AdapterBasic" Relationship="Self.FK_AdapterMessageType_AdapterBasic" FromRole="AdapterMessageType" ToRole="AdapterBasic" />
+          <NavigationProperty Name="MessageType" Relationship="Self.FK_AdapterMessageType_MessageType" FromRole="AdapterMessageType" ToRole="MessageType" />
+        </EntityType>
+        <EntityType Name="AdapterTypeDIM">
+          <Key>
+            <PropertyRef Name="AdapterTypeId" />
+          </Key>
+          <Property Name="AdapterTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdapterType" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AdapterBasic" Relationship="Self.FK_AdapterBasic_AdapterTypeDIM" FromRole="AdapterTypeDIM" ToRole="AdapterBasic" />
+        </EntityType>
+        <EntityType Name="ConnectedSettings">
+          <Key>
+            <PropertyRef Name="ConnectedSettingsId" />
+          </Key>
+          <Property Name="ConnectedSettingsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SettingsKey" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="SettingsValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDateTimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDateTimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MessageSubscriptionDetails">
+          <Key>
+            <PropertyRef Name="AdapterId" />
+            <PropertyRef Name="MessageTypeId" />
+          </Key>
+          <Property Name="AdapterId" Type="Int32" Nullable="false" />
+          <Property Name="MessageTypeId" Type="Int32" Nullable="false" />
+          <Property Name="SubscriptionCriteria" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AdapterBasic" Relationship="Self.FK_MessageSubscriptionDetails_AdapterBasic" FromRole="MessageSubscriptionDetails" ToRole="AdapterBasic" />
+          <NavigationProperty Name="MessageType" Relationship="Self.FK_MessageSubscriptionDetails_MessageType" FromRole="MessageSubscriptionDetails" ToRole="MessageType" />
+        </EntityType>
+        <EntityType Name="MessageType">
+          <Key>
+            <PropertyRef Name="MessageTypeId" />
+          </Key>
+          <Property Name="MessageTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageType1" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MessageSchema" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="UniqueIdentifierColumn" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="AdapterMessageType" Relationship="Self.FK_AdapterMessageType_MessageType" FromRole="MessageType" ToRole="AdapterMessageType" />
+          <NavigationProperty Name="MessageSubscriptionDetails" Relationship="Self.FK_MessageSubscriptionDetails_MessageType" FromRole="MessageType" ToRole="MessageSubscriptionDetails" />
+        </EntityType>
+        <EntityType Name="ReceiveAdapterDetails">
+          <Key>
+            <PropertyRef Name="AdapterId" />
+          </Key>
+          <Property Name="AdapterId" Type="Int32" Nullable="false" />
+          <Property Name="AdapterServiceURI" Type="String" MaxLength="4096" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AdapterServiceOperation" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="IsWCFService" Type="Boolean" Nullable="false" />
+          <Property Name="TimesToRetry" Type="Int32" />
+          <Property Name="RetryInterval" Type="Int32" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AdapterBasic" Relationship="Self.FK_ReceiveAdapterDetails_AdapterBasic" FromRole="ReceiveAdapterDetails" ToRole="AdapterBasic" />
+        </EntityType>
+        <EntityType Name="AdaptersView">
+          <Key>
+            <PropertyRef Name="AdapterId" />
+            <PropertyRef Name="AdapterName" />
+            <PropertyRef Name="AdapterTypeId" />
+          </Key>
+          <Property Name="AdapterId" Type="Int32" Nullable="false" />
+          <Property Name="AdapterName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AdapterTypeId" Type="Int32" Nullable="false" />
+          <Property Name="AdapterType" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="MessageTypeId" Type="Int32" />
+          <Property Name="MessageType" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="MessageSchema" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AdapterServiceURI" Type="String" MaxLength="4096" FixedLength="false" Unicode="false" />
+          <Property Name="IsWCFService" Type="Boolean" />
+          <Property Name="AdapterServiceOperation" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="TimesToRetry" Type="Int32" />
+          <Property Name="RetryInterval" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ConnectedSettingsView">
+          <Key>
+            <PropertyRef Name="ConnectedSettingsId" />
+            <PropertyRef Name="CreatedDateTimeStamp" />
+            <PropertyRef Name="CreatedUserId" />
+          </Key>
+          <Property Name="ConnectedSettingsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SettingsKey" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="SettingsValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDateTimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDateTimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_AdapterBasic_AdapterTypeDIM">
+          <End Role="AdapterTypeDIM" Type="Self.AdapterTypeDIM" Multiplicity="1" />
+          <End Role="AdapterBasic" Type="Self.AdapterBasic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdapterTypeDIM">
+              <PropertyRef Name="AdapterTypeId" />
+            </Principal>
+            <Dependent Role="AdapterBasic">
+              <PropertyRef Name="AdapterTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdapterMessageType_AdapterBasic">
+          <End Role="AdapterBasic" Type="Self.AdapterBasic" Multiplicity="1" />
+          <End Role="AdapterMessageType" Type="Self.AdapterMessageType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdapterBasic">
+              <PropertyRef Name="AdapterId" />
+            </Principal>
+            <Dependent Role="AdapterMessageType">
+              <PropertyRef Name="AdapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageSubscriptionDetails_AdapterBasic">
+          <End Role="AdapterBasic" Type="Self.AdapterBasic" Multiplicity="1" />
+          <End Role="MessageSubscriptionDetails" Type="Self.MessageSubscriptionDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdapterBasic">
+              <PropertyRef Name="AdapterId" />
+            </Principal>
+            <Dependent Role="MessageSubscriptionDetails">
+              <PropertyRef Name="AdapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceiveAdapterDetails_AdapterBasic">
+          <End Role="AdapterBasic" Type="Self.AdapterBasic" Multiplicity="1" />
+          <End Role="ReceiveAdapterDetails" Type="Self.ReceiveAdapterDetails" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AdapterBasic">
+              <PropertyRef Name="AdapterId" />
+            </Principal>
+            <Dependent Role="ReceiveAdapterDetails">
+              <PropertyRef Name="AdapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AdapterMessageType_MessageType">
+          <End Role="MessageType" Type="Self.MessageType" Multiplicity="1" />
+          <End Role="AdapterMessageType" Type="Self.AdapterMessageType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageType">
+              <PropertyRef Name="MessageTypeId" />
+            </Principal>
+            <Dependent Role="AdapterMessageType">
+              <PropertyRef Name="MessageTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageSubscriptionDetails_MessageType">
+          <End Role="MessageType" Type="Self.MessageType" Multiplicity="1" />
+          <End Role="MessageSubscriptionDetails" Type="Self.MessageSubscriptionDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageType">
+              <PropertyRef Name="MessageTypeId" />
+            </Principal>
+            <Dependent Role="MessageSubscriptionDetails">
+              <PropertyRef Name="MessageTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ConnectedConfEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdapterBasic" EntityType="Self.AdapterBasic" />
+          <EntitySet Name="AdapterMessageType" EntityType="Self.AdapterMessageType" />
+          <EntitySet Name="AdapterTypeDIM" EntityType="Self.AdapterTypeDIM" />
+          <EntitySet Name="ConnectedSettings" EntityType="Self.ConnectedSettings" />
+          <EntitySet Name="MessageSubscriptionDetails" EntityType="Self.MessageSubscriptionDetails" />
+          <EntitySet Name="MessageType" EntityType="Self.MessageType" />
+          <EntitySet Name="ReceiveAdapterDetails" EntityType="Self.ReceiveAdapterDetails" />
+          <EntitySet Name="AdaptersView" EntityType="Self.AdaptersView" />
+          <EntitySet Name="ConnectedSettingsView" EntityType="Self.ConnectedSettingsView" />
+          <AssociationSet Name="FK_AdapterBasic_AdapterTypeDIM" Association="Self.FK_AdapterBasic_AdapterTypeDIM">
+            <End Role="AdapterTypeDIM" EntitySet="AdapterTypeDIM" />
+            <End Role="AdapterBasic" EntitySet="AdapterBasic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdapterMessageType_AdapterBasic" Association="Self.FK_AdapterMessageType_AdapterBasic">
+            <End Role="AdapterBasic" EntitySet="AdapterBasic" />
+            <End Role="AdapterMessageType" EntitySet="AdapterMessageType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageSubscriptionDetails_AdapterBasic" Association="Self.FK_MessageSubscriptionDetails_AdapterBasic">
+            <End Role="AdapterBasic" EntitySet="AdapterBasic" />
+            <End Role="MessageSubscriptionDetails" EntitySet="MessageSubscriptionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceiveAdapterDetails_AdapterBasic" Association="Self.FK_ReceiveAdapterDetails_AdapterBasic">
+            <End Role="AdapterBasic" EntitySet="AdapterBasic" />
+            <End Role="ReceiveAdapterDetails" EntitySet="ReceiveAdapterDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AdapterMessageType_MessageType" Association="Self.FK_AdapterMessageType_MessageType">
+            <End Role="MessageType" EntitySet="MessageType" />
+            <End Role="AdapterMessageType" EntitySet="AdapterMessageType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageSubscriptionDetails_MessageType" Association="Self.FK_MessageSubscriptionDetails_MessageType">
+            <End Role="MessageType" EntitySet="MessageType" />
+            <End Role="MessageSubscriptionDetails" EntitySet="MessageSubscriptionDetails" />
+          </AssociationSet>
+          <FunctionImport Name="usp_Add_Adapter">
+            <Parameter Name="AdapterName" Mode="In" Type="String" />
+            <Parameter Name="AdapterType" Mode="In" Type="String" />
+            <Parameter Name="MessageType" Mode="In" Type="String" />
+            <Parameter Name="MessageSchema" Mode="In" Type="String" />
+            <Parameter Name="IsReceiveAdapter" Mode="In" Type="Boolean" />
+            <Parameter Name="AdapterServiceURI" Mode="In" Type="String" />
+            <Parameter Name="AdapterServiceOperation" Mode="In" Type="String" />
+            <Parameter Name="IsWCFService" Mode="In" Type="Boolean" />
+            <Parameter Name="TimesToRetry" Mode="In" Type="Int32" />
+            <Parameter Name="RetryInterval" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Delete_Adapter">
+            <Parameter Name="AdapterId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Get_Adapters" ReturnType="Collection(ConnectedConfModel.usp_Get_Adapters_Result)">
+            <Parameter Name="SortColumn" Mode="In" Type="String" />
+            <Parameter Name="SortOrder" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Get_SettingByID">
+            <Parameter Name="SettingsId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Get_Settings">
+            <Parameter Name="RowStartIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="SearchText" Mode="In" Type="String" />
+            <Parameter Name="SortColumn" Mode="In" Type="String" />
+            <Parameter Name="SortOrder" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Get_Subscribers" ReturnType="Collection(ConnectedConfModel.usp_Get_Subscribers_Result)" />
+          <FunctionImport Name="usp_GetAdaptersByID" ReturnType="Collection(ConnectedConfModel.usp_GetAdaptersByID_Result)">
+            <Parameter Name="AdapterId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Update_Adapter">
+            <Parameter Name="AdapterId" Mode="In" Type="Int32" />
+            <Parameter Name="AdapterName" Mode="In" Type="String" />
+            <Parameter Name="MessageTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="MessageType" Mode="In" Type="String" />
+            <Parameter Name="MessageSchema" Mode="In" Type="String" />
+            <Parameter Name="IsReceiveAdapter" Mode="In" Type="Boolean" />
+            <Parameter Name="AdapterServiceURI" Mode="In" Type="String" />
+            <Parameter Name="AdapterServiceOperation" Mode="In" Type="String" />
+            <Parameter Name="IsWCFService" Mode="In" Type="Boolean" />
+            <Parameter Name="TimesToRetry" Mode="In" Type="Int32" />
+            <Parameter Name="RetryInterval" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_Update_Setting">
+            <Parameter Name="SettingsId" Mode="In" Type="Int32" />
+            <Parameter Name="SettingsKey" Mode="In" Type="String" />
+            <Parameter Name="SettingsValue" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="ModifiedUserId" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="usp_Get_Adapters_Result">
+          <Property Type="Int32" Name="AdapterId" Nullable="false" />
+          <Property Type="String" Name="AdapterName" Nullable="false" MaxLength="256" />
+          <Property Type="Int32" Name="AdapterTypeId" Nullable="false" />
+          <Property Type="String" Name="AdapterType" Nullable="true" MaxLength="64" />
+          <Property Type="Int32" Name="MessageTypeId" Nullable="true" />
+          <Property Type="String" Name="MessageType" Nullable="true" MaxLength="1024" />
+          <Property Type="String" Name="MessageSchema" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="AdapterServiceURI" Nullable="true" MaxLength="4096" />
+          <Property Type="Boolean" Name="IsWCFService" Nullable="true" />
+          <Property Type="String" Name="AdapterServiceOperation" Nullable="true" MaxLength="256" />
+          <Property Type="Int32" Name="TimesToRetry" Nullable="true" />
+          <Property Type="Int32" Name="RetryInterval" Nullable="true" />
+          <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_Get_Subscribers_Result">
+          <Property Type="Int32" Name="AdapterId" Nullable="false" />
+          <Property Type="String" Name="AdapterName" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="AdapterType" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="AdapterServiceURI" Nullable="false" MaxLength="4096" />
+          <Property Type="Int32" Name="TimesToRetry" Nullable="true" />
+          <Property Type="Int32" Name="RetryInterval" Nullable="true" />
+          <Property Type="Int32" Name="MessageTypeId" Nullable="false" />
+          <Property Type="String" Name="MessageType" Nullable="false" MaxLength="1024" />
+          <Property Type="Int32" Name="AdapterTypeId" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="String" Name="SubscriptionCriteria" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="AdapterServiceOperation" Nullable="true" MaxLength="256" />
+          <Property Type="Boolean" Name="IsWCFService" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_GetAdaptersByID_Result">
+          <Property Type="Int32" Name="AdapterId" Nullable="false" />
+          <Property Type="String" Name="AdapterName" Nullable="false" MaxLength="256" />
+          <Property Type="Int32" Name="AdapterTypeId" Nullable="false" />
+          <Property Type="String" Name="AdapterType" Nullable="true" MaxLength="64" />
+          <Property Type="Int32" Name="MessageTypeId" Nullable="true" />
+          <Property Type="String" Name="MessageType" Nullable="true" MaxLength="1024" />
+          <Property Type="String" Name="MessageSchema" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="AdapterServiceURI" Nullable="true" MaxLength="4096" />
+          <Property Type="Boolean" Name="IsWCFService" Nullable="true" />
+          <Property Type="String" Name="AdapterServiceOperation" Nullable="true" MaxLength="256" />
+          <Property Type="Int32" Name="TimesToRetry" Nullable="true" />
+          <Property Type="Int32" Name="RetryInterval" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ConnectedConfModelStoreContainer" CdmEntityContainer="ConnectedConfEntities">
+          <EntitySetMapping Name="AdapterBasic">
+            <EntityTypeMapping TypeName="ConnectedConfModel.AdapterBasic">
+              <MappingFragment StoreEntitySet="AdapterBasic">
+                <ScalarProperty Name="AdapterId" ColumnName="AdapterId" />
+                <ScalarProperty Name="AdapterName" ColumnName="AdapterName" />
+                <ScalarProperty Name="AdapterTypeId" ColumnName="AdapterTypeId" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdapterMessageType">
+            <EntityTypeMapping TypeName="ConnectedConfModel.AdapterMessageType">
+              <MappingFragment StoreEntitySet="AdapterMessageType">
+                <ScalarProperty Name="AdapterId" ColumnName="AdapterId" />
+                <ScalarProperty Name="MessageTypeId" ColumnName="MessageTypeId" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdapterTypeDIM">
+            <EntityTypeMapping TypeName="ConnectedConfModel.AdapterTypeDIM">
+              <MappingFragment StoreEntitySet="AdapterTypeDIM">
+                <ScalarProperty Name="AdapterTypeId" ColumnName="AdapterTypeId" />
+                <ScalarProperty Name="AdapterType" ColumnName="AdapterType" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConnectedSettings">
+            <EntityTypeMapping TypeName="ConnectedConfModel.ConnectedSettings">
+              <MappingFragment StoreEntitySet="ConnectedSettings">
+                <ScalarProperty Name="ConnectedSettingsId" ColumnName="ConnectedSettingsId" />
+                <ScalarProperty Name="SettingsKey" ColumnName="SettingsKey" />
+                <ScalarProperty Name="SettingsValue" ColumnName="SettingsValue" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDateTimeStamp" ColumnName="CreatedDateTimeStamp" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="ModifiedDateTimeStamp" ColumnName="ModifiedDateTimeStamp" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageSubscriptionDetails">
+            <EntityTypeMapping TypeName="ConnectedConfModel.MessageSubscriptionDetails">
+              <MappingFragment StoreEntitySet="MessageSubscriptionDetails">
+                <ScalarProperty Name="AdapterId" ColumnName="AdapterId" />
+                <ScalarProperty Name="MessageTypeId" ColumnName="MessageTypeId" />
+                <ScalarProperty Name="SubscriptionCriteria" ColumnName="SubscriptionCriteria" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageType">
+            <EntityTypeMapping TypeName="ConnectedConfModel.MessageType">
+              <MappingFragment StoreEntitySet="MessageType">
+                <ScalarProperty Name="MessageTypeId" ColumnName="MessageTypeId" />
+                <ScalarProperty Name="MessageType1" ColumnName="MessageType" />
+                <ScalarProperty Name="MessageSchema" ColumnName="MessageSchema" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="UniqueIdentifierColumn" ColumnName="UniqueIdentifierColumn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReceiveAdapterDetails">
+            <EntityTypeMapping TypeName="ConnectedConfModel.ReceiveAdapterDetails">
+              <MappingFragment StoreEntitySet="ReceiveAdapterDetails">
+                <ScalarProperty Name="AdapterId" ColumnName="AdapterId" />
+                <ScalarProperty Name="AdapterServiceURI" ColumnName="AdapterServiceURI" />
+                <ScalarProperty Name="AdapterServiceOperation" ColumnName="AdapterServiceOperation" />
+                <ScalarProperty Name="IsWCFService" ColumnName="IsWCFService" />
+                <ScalarProperty Name="TimesToRetry" ColumnName="TimesToRetry" />
+                <ScalarProperty Name="RetryInterval" ColumnName="RetryInterval" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdaptersView">
+            <EntityTypeMapping TypeName="ConnectedConfModel.AdaptersView">
+              <MappingFragment StoreEntitySet="AdaptersView">
+                <ScalarProperty Name="AdapterId" ColumnName="AdapterId" />
+                <ScalarProperty Name="AdapterName" ColumnName="AdapterName" />
+                <ScalarProperty Name="AdapterTypeId" ColumnName="AdapterTypeId" />
+                <ScalarProperty Name="AdapterType" ColumnName="AdapterType" />
+                <ScalarProperty Name="MessageTypeId" ColumnName="MessageTypeId" />
+                <ScalarProperty Name="MessageType" ColumnName="MessageType" />
+                <ScalarProperty Name="MessageSchema" ColumnName="MessageSchema" />
+                <ScalarProperty Name="AdapterServiceURI" ColumnName="AdapterServiceURI" />
+                <ScalarProperty Name="IsWCFService" ColumnName="IsWCFService" />
+                <ScalarProperty Name="AdapterServiceOperation" ColumnName="AdapterServiceOperation" />
+                <ScalarProperty Name="TimesToRetry" ColumnName="TimesToRetry" />
+                <ScalarProperty Name="RetryInterval" ColumnName="RetryInterval" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConnectedSettingsView">
+            <EntityTypeMapping TypeName="ConnectedConfModel.ConnectedSettingsView">
+              <MappingFragment StoreEntitySet="ConnectedSettingsView">
+                <ScalarProperty Name="ConnectedSettingsId" ColumnName="ConnectedSettingsId" />
+                <ScalarProperty Name="SettingsKey" ColumnName="SettingsKey" />
+                <ScalarProperty Name="SettingsValue" ColumnName="SettingsValue" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDateTimeStamp" ColumnName="CreatedDateTimeStamp" />
+                <ScalarProperty Name="CreatedUserId" ColumnName="CreatedUserId" />
+                <ScalarProperty Name="ModifiedDateTimeStamp" ColumnName="ModifiedDateTimeStamp" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_Add_Adapter" FunctionName="ConnectedConfModel.Store.usp_Add_Adapter" />
+          <FunctionImportMapping FunctionImportName="usp_Delete_Adapter" FunctionName="ConnectedConfModel.Store.usp_Delete_Adapter" />
+          <FunctionImportMapping FunctionImportName="usp_Get_Adapters" FunctionName="ConnectedConfModel.Store.usp_Get_Adapters">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ConnectedConfModel.usp_Get_Adapters_Result">
+                <ScalarProperty Name="AdapterId" ColumnName="AdapterId" />
+                <ScalarProperty Name="AdapterName" ColumnName="AdapterName" />
+                <ScalarProperty Name="AdapterTypeId" ColumnName="AdapterTypeId" />
+                <ScalarProperty Name="AdapterType" ColumnName="AdapterType" />
+                <ScalarProperty Name="MessageTypeId" ColumnName="MessageTypeId" />
+                <ScalarProperty Name="MessageType" ColumnName="MessageType" />
+                <ScalarProperty Name="MessageSchema" ColumnName="MessageSchema" />
+                <ScalarProperty Name="AdapterServiceURI" ColumnName="AdapterServiceURI" />
+                <ScalarProperty Name="IsWCFService" ColumnName="IsWCFService" />
+                <ScalarProperty Name="AdapterServiceOperation" ColumnName="AdapterServiceOperation" />
+                <ScalarProperty Name="TimesToRetry" ColumnName="TimesToRetry" />
+                <ScalarProperty Name="RetryInterval" ColumnName="RetryInterval" />
+                <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Get_SettingByID" FunctionName="ConnectedConfModel.Store.usp_Get_SettingByID" />
+          <FunctionImportMapping FunctionImportName="usp_Get_Settings" FunctionName="ConnectedConfModel.Store.usp_Get_Settings" />
+          <FunctionImportMapping FunctionImportName="usp_Get_Subscribers" FunctionName="ConnectedConfModel.Store.usp_Get_Subscribers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ConnectedConfModel.usp_Get_Subscribers_Result">
+                <ScalarProperty Name="AdapterId" ColumnName="AdapterId" />
+                <ScalarProperty Name="AdapterName" ColumnName="AdapterName" />
+                <ScalarProperty Name="AdapterType" ColumnName="AdapterType" />
+                <ScalarProperty Name="AdapterServiceURI" ColumnName="AdapterServiceURI" />
+                <ScalarProperty Name="TimesToRetry" ColumnName="TimesToRetry" />
+                <ScalarProperty Name="RetryInterval" ColumnName="RetryInterval" />
+                <ScalarProperty Name="MessageTypeId" ColumnName="MessageTypeId" />
+                <ScalarProperty Name="MessageType" ColumnName="MessageType" />
+                <ScalarProperty Name="AdapterTypeId" ColumnName="AdapterTypeId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SubscriptionCriteria" ColumnName="SubscriptionCriteria" />
+                <ScalarProperty Name="AdapterServiceOperation" ColumnName="AdapterServiceOperation" />
+                <ScalarProperty Name="IsWCFService" ColumnName="IsWCFService" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetAdaptersByID" FunctionName="ConnectedConfModel.Store.usp_GetAdaptersByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ConnectedConfModel.usp_GetAdaptersByID_Result">
+                <ScalarProperty Name="AdapterId" ColumnName="AdapterId" />
+                <ScalarProperty Name="AdapterName" ColumnName="AdapterName" />
+                <ScalarProperty Name="AdapterTypeId" ColumnName="AdapterTypeId" />
+                <ScalarProperty Name="AdapterType" ColumnName="AdapterType" />
+                <ScalarProperty Name="MessageTypeId" ColumnName="MessageTypeId" />
+                <ScalarProperty Name="MessageType" ColumnName="MessageType" />
+                <ScalarProperty Name="MessageSchema" ColumnName="MessageSchema" />
+                <ScalarProperty Name="AdapterServiceURI" ColumnName="AdapterServiceURI" />
+                <ScalarProperty Name="IsWCFService" ColumnName="IsWCFService" />
+                <ScalarProperty Name="AdapterServiceOperation" ColumnName="AdapterServiceOperation" />
+                <ScalarProperty Name="TimesToRetry" ColumnName="TimesToRetry" />
+                <ScalarProperty Name="RetryInterval" ColumnName="RetryInterval" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_Update_Adapter" FunctionName="ConnectedConfModel.Store.usp_Update_Adapter" />
+          <FunctionImportMapping FunctionImportName="usp_Update_Setting" FunctionName="ConnectedConfModel.Store.usp_Update_Setting" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D2753B32-0236-49B5-8919-BC70AF870058}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Connected.DAL</RootNamespace>
+    <AssemblyName>Connected.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activity.cs">
+      <DependentUpon>ConnectedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityType.cs">
+      <DependentUpon>ConnectedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Adjustable.cs">
+      <DependentUpon>ConnectedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AdjustableType.cs">
+      <DependentUpon>ConnectedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Capacity.cs">
+      <DependentUpon>ConnectedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\AdapterBasic.cs">
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\AdapterMessageType.cs">
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\AdaptersView.cs">
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\AdapterTypeDIM.cs">
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\AuditExclusionList.cs">
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\ConnectedConfDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConnectedConfDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\ConnectedConfDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\ConnectedConfDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConnectedConfDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\ConnectedSettings.cs">
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\ConnectedSettingsView.cs">
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\MessageSubscriptionDetails.cs">
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\MessageType.cs">
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\ReceiveAdapterDetails.cs">
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\Repositories\ADO\GenericRepository\GenericRepositoryADO.cs" />
+    <Compile Include="Configuration\Repositories\ADO\GenericRepository\UnitOfWorkADO.cs" />
+    <Compile Include="Configuration\Repositories\EF\AdaptersRepository.cs" />
+    <Compile Include="Configuration\Repositories\EF\ConnectedConfDBRepository.cs" />
+    <Compile Include="Configuration\Repositories\EF\GenericRepository\GenericRepositoryEF.cs" />
+    <Compile Include="Configuration\Repositories\EF\GenericRepository\UnitOfWorkEF.cs" />
+    <Compile Include="Configuration\Repositories\EF\MessageTypeRepository.cs" />
+    <Compile Include="Configuration\Repositories\Fake\GenericRepositoryFake.cs" />
+    <Compile Include="Configuration\Repositories\Fake\UnitOfWorkFake.cs" />
+    <Compile Include="Configuration\Repositories\IAdaptersRepository.cs" />
+    <Compile Include="Configuration\Repositories\IAdapterTypes.cs" />
+    <Compile Include="Configuration\Repositories\IConnectedConfDBRepository.cs" />
+    <Compile Include="Configuration\Repositories\IMessageTypeRepositoty.cs" />
+    <Compile Include="Configuration\usp_GetAdaptersByID_Result.cs">
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\usp_Get_Adapters_Result.cs">
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\usp_Get_AuditExclusionList_Result.cs">
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\usp_Get_Subscribers_Result.cs">
+      <DependentUpon>ConnectedConfDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectedModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConnectedModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectedModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConnectedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectedModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConnectedModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Fridge.cs">
+      <DependentUpon>ConnectedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Item.cs">
+      <DependentUpon>ConnectedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemRegistration.cs">
+      <DependentUpon>ConnectedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemType.cs">
+      <DependentUpon>ConnectedModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ADONET\ActivityRepository.cs" />
+    <Compile Include="Repositories\ADONET\Repository.cs" />
+    <Compile Include="Repositories\ADONET\UnitOfWork.cs" />
+    <Compile Include="Repositories\ADONET\ReceiveAdapterRepository.cs" />
+    <Compile Include="Repositories\EntityFramework\DataContextFactory.cs" />
+    <Compile Include="Repositories\EntityFramework\RepositoryClasses\AbstractRepository.cs" />
+    <Compile Include="Repositories\EntityFramework\EFUnitOfWork.cs" />
+    <Compile Include="Repositories\EntityFramework\RepositoryClasses\ReceiveAdapterRepository.cs" />
+    <Compile Include="Repositories\EntityFramework\RepositoryClasses\ActivityRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IActivityRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IReceiveAdapterRepository.cs" />
+    <Compile Include="Repositories\Sample\SampleRepository.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>ConnectedModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="ConnectedModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ConnectedModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Configuration\ConnectedConfDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ConnectedConfDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Configuration\ConnectedConfDBModel.edmx.diagram">
+      <DependentUpon>ConnectedConfDBModel.edmx</DependentUpon>
+    </None>
+    <None Include="ConnectedModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ConnectedModel.edmx</DependentUpon>
+      <LastGenOutput>ConnectedModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ConnectedModel.edmx.diagram">
+      <DependentUpon>ConnectedModel.edmx</DependentUpon>
+    </None>
+    <None Include="ConnectedModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ConnectedModel.edmx</DependentUpon>
+      <LastGenOutput>ConnectedModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\ServiceLayer\" />
+    <Folder Include="Repositories\ADONET\Entities\" />
+    <Folder Include="Repositories\EntityFramework.Patterns\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\ConnectedConfDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ConnectedConfDBModel.edmx</DependentUpon>
+      <LastGenOutput>ConnectedConfDBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Configuration\ConnectedConfDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ConnectedConfDBModel.edmx</DependentUpon>
+      <LastGenOutput>ConnectedConfDBModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Connected.Common\Connected.Common.csproj">
+      <Project>{4AEE8285-8DD1-46E3-B369-FFEC752AF74D}</Project>
+      <Name>Connected.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Connected.DAL.Core\Connected.DAL.Core.csproj">
+      <Project>{8971BBEC-5592-41FB-AC99-9F6464BFBF76}</Project>
+      <Name>Connected.DAL.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Connected.Infrastructure\Connected.Infrastructure.csproj">
+      <Project>{d5987aa2-21bb-4977-8ddd-096a636345aa}</Project>
+      <Name>Connected.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

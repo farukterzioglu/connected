@@ -1,0 +1,410 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Counter.UnitTests", "UnitTests\Counter.UnitTests.csproj", "{AFC7A240-055B-4B58-A0E8-647AA1A9E772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Counter.ReceiveAdapter", "ReceiveAdapter\Counter.ReceiveAdapter.csproj", "{314B7DE1-2009-42A8-8D65-ECA37B481BF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Counter.ReceiveAdapterHost", "ReceiveAdapterHost\Counter.ReceiveAdapterHost.csproj", "{0538AC73-79A0-4DA1-8032-4AB577F9938D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Counter.SendAdapter", "SendAdapter\Counter.SendAdapter.csproj", "{15A9F1C6-87F8-4E7A-A9F9-7C2D43A30189}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Counter", "Counter", "{96894C3F-9D04-4BF0-9D51-7C289073E99B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConnectedCore", "ConnectedCore", "{CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.Tests", "Connected.Tests\Connected.Tests.csproj", "{3C5FDC4B-B34A-4419-9189-2573F6FC6D1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.MessageStorage", "Connected.MessageStorage\Connected.MessageStorage.csproj", "{229B1BDF-B647-4F85-BFDF-29CA7EADCE55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.Common", "Connected.Common\Connected.Common.csproj", "{4AEE8285-8DD1-46E3-B369-FFEC752AF74D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.DAL", "Connected.DAL\Connected.DAL.csproj", "{D2753B32-0236-49B5-8919-BC70AF870058}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.Inbound", "Connected.Inbound\Connected.Inbound.csproj", "{E94F4952-D838-4CB8-9613-6DF33B43DD20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.InboundHost", "Connected.InboundHost\Connected.InboundHost.csproj", "{E125D2E1-A081-43DF-8E94-1F00065BB0E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.Infrastructure", "Connected.Infrastructure\Connected.Infrastructure.csproj", "{D5987AA2-21BB-4977-8DDD-096A636345AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.Schemas", "Connected.Schemas\Connected.Schemas.csproj", "{D6D444B2-95DA-47F9-99F9-CEC8F23D76D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.Dispatcher", "Connected.Dispatcher\Connected.Dispatcher.csproj", "{EE06DC03-324A-4517-8BDB-81E6F8883FEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.RouteFinder", "Connected.RouteFinder\Connected.RouteFinder.csproj", "{7664FD43-22AF-47E9-9333-BE897314C7FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.InboundWinService", "Connected.InboundWinService\Connected.InboundWinService.csproj", "{220719C5-A5B7-4322-BDA4-E04FDF1B8EEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.DispatcherWinService", "Connected.DispatcherWinService\Connected.DispatcherWinService.csproj", "{AA014F60-115C-4EB2-A38B-9825A3DCE5E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.RouteFinderWinService", "Connected.RouteFinderWinService\Connected.RouteFinderWinService.csproj", "{4F25B018-036E-4C89-B1EF-37E851B79057}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.Schemas.Common", "Connected.Schemas.Common\Connected.Schemas.Common.csproj", "{9BF001E7-9AF7-4B92-B89F-EB6257EAAB01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.DAL.CrossCutting", "Connected.DAL.CrossCutting\Connected.DAL.CrossCutting.csproj", "{78379B3A-349F-43F1-AE43-A9067E30E02F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Connected.DAL.DbTriggers", "Connected.DAL.DbTriggers", "{DEDDF8F9-3AC6-4669-813F-B7197F88CB3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.DAL.DbTriggers.AdapterBasicTriggers", "Connected.DAL.DbTriggers.BasicAdapterTrigger\Connected.DAL.DbTriggers.AdapterBasicTriggers.csproj", "{0E91F69C-11B1-42EF-8A54-8B678E379EAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.DAL.DbTriggers.AdapterTypeTriggers", "Connected.DAL.DbTriggers.AdapterTypeTriggers\Connected.DAL.DbTriggers.AdapterTypeTriggers.csproj", "{4C3E813B-85D1-46B7-BE2B-E36E5A95761F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.DAL.Core", "Connected.DAL.Core\Connected.DAL.Core.csproj", "{8971BBEC-5592-41FB-AC99-9F6464BFBF76}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6967A5E9-E237-4D50-843B-8C14CDB9F50A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Connected.DAL", "Tests.Connected.DAL\Tests.Connected.DAL.csproj", "{E65880FE-6EB3-4BA0-8284-9394C6A37380}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.DAL.Core.Tests", "Tests.Connected.DAL.Core\Connected.DAL.Core.Tests.csproj", "{8B493F1A-1394-4477-B547-6314C6E7B88F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.Common.Tests", "Connected.Common.Tests\Connected.Common.Tests.csproj", "{421DC169-3F87-4D4C-9DA3-6173F5C45D98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.Tests.TestAssets", "Connected.Tests.TestAssets\Connected.Tests.TestAssets.csproj", "{8C648F6B-4659-4242-B324-03D3A46770DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Connected.WS.Triggers", "Connected.WS.Triggers", "{ECC10173-D5F0-4C39-9741-2A75339E5F4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.DAL.DbTriggers.SampleTriggerReader", "Connected.DAL.DbTriggers.SampleTriggerReader\Connected.DAL.DbTriggers.SampleTriggerReader.csproj", "{E841C8A6-CEF0-43CF-85E0-9135FC4240F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.ModuleManager", "Connected.ModuleManager\Connected.ModuleManager.csproj", "{71BC2FEC-E864-4C32-8D7D-28228F3ADD5B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConnectedAdministration", "ConnectedAdministration", "{0026C1C4-F7E6-44B0-808B-2D4A3E1B0AF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.Configuration.WebApp", "Connected.Configuration.WebApp\Connected.Configuration.WebApp.csproj", "{EF780D3F-3431-4F39-A597-CA3DE476E240}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.DAL.Tests", "Connected.DAL.Tests\Connected.DAL.Tests.csproj", "{D43278BD-4631-4836-B085-735E0C7D16C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Connected.Configuration.Plugins", "Connected.Configuration.Plugins", "{11C06B79-2B5F-4ADE-8FA4-60FC3B03B9E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.Configuration.WebApp.Plugins.Sample1", "Connected.Configuration.Plugins.Sample1\Connected.Configuration.WebApp.Plugins.Sample1.csproj", "{B0BDB1BA-AA1A-46F5-92A9-A5EC45E97D6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connected.Configuration.WebApp.Plugins.AnotherPlugin", "Connected.Configuration.Plugins.AnotherPlugin\Connected.Configuration.WebApp.Plugins.AnotherPlugin.csproj", "{B317A968-F66A-430D-935C-75721349ABB2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F5CE509C-A208-43D4-950C-42D86B8B475E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PluginFramework", "PluginFramework", "{F3BFEBB8-CEBD-419D-A8B0-228BB9F29ABB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCutting", "{2323A480-6255-45EB-B26E-5DC89818856B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AspectOriented", "AspectOriented", "{F6912BB6-92C9-4700-A1C2-86D194A2D6AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{DBE57B2A-A97B-4A15-9D48-2BDDC46A31CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F54BA974-4FC9-404D-A0E4-3CE066FD62A9}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 33
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://farukdevbox.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ReceiveAdapter\\Counter.ReceiveAdapter.csproj
+		SccProjectTopLevelParentUniqueName1 = Connected.sln
+		SccProjectName1 = ReceiveAdapter
+		SccLocalPath1 = ReceiveAdapter
+		SccProjectUniqueName2 = ReceiveAdapterHost\\Counter.ReceiveAdapterHost.csproj
+		SccProjectTopLevelParentUniqueName2 = Connected.sln
+		SccProjectName2 = ReceiveAdapterHost
+		SccLocalPath2 = ReceiveAdapterHost
+		SccProjectUniqueName3 = SendAdapter\\Counter.SendAdapter.csproj
+		SccProjectTopLevelParentUniqueName3 = Connected.sln
+		SccProjectName3 = SendAdapter
+		SccLocalPath3 = SendAdapter
+		SccProjectUniqueName4 = UnitTests\\Counter.UnitTests.csproj
+		SccProjectTopLevelParentUniqueName4 = Connected.sln
+		SccProjectName4 = UnitTests
+		SccLocalPath4 = UnitTests
+		SccProjectUniqueName5 = Connected.Tests\\Connected.Tests.csproj
+		SccProjectTopLevelParentUniqueName5 = Connected.sln
+		SccProjectName5 = Connected.Tests
+		SccLocalPath5 = Connected.Tests
+		SccProjectUniqueName6 = Connected.MessageStorage\\Connected.MessageStorage.csproj
+		SccProjectTopLevelParentUniqueName6 = Connected.sln
+		SccProjectName6 = Connected.MessageStorage
+		SccLocalPath6 = Connected.MessageStorage
+		SccProjectUniqueName7 = Connected.Common\\Connected.Common.csproj
+		SccProjectTopLevelParentUniqueName7 = Connected.sln
+		SccProjectName7 = Connected.Common
+		SccLocalPath7 = Connected.Common
+		SccProjectUniqueName8 = Connected.DAL\\Connected.DAL.csproj
+		SccProjectTopLevelParentUniqueName8 = Connected.sln
+		SccProjectName8 = Connected.DAL
+		SccLocalPath8 = Connected.DAL
+		SccProjectUniqueName9 = Connected.Inbound\\Connected.Inbound.csproj
+		SccProjectTopLevelParentUniqueName9 = Connected.sln
+		SccProjectName9 = Connected.Inbound
+		SccLocalPath9 = Connected.Inbound
+		SccProjectUniqueName10 = Connected.InboundHost\\Connected.InboundHost.csproj
+		SccProjectTopLevelParentUniqueName10 = Connected.sln
+		SccProjectName10 = Connected.InboundHost
+		SccLocalPath10 = Connected.InboundHost
+		SccProjectUniqueName11 = Connected.Infrastructure\\Connected.Infrastructure.csproj
+		SccProjectTopLevelParentUniqueName11 = Connected.sln
+		SccProjectName11 = Connected.Infrastructure
+		SccLocalPath11 = Connected.Infrastructure
+		SccProjectUniqueName12 = Connected.Schemas\\Connected.Schemas.csproj
+		SccProjectTopLevelParentUniqueName12 = Connected.sln
+		SccProjectName12 = Connected.Schemas
+		SccLocalPath12 = Connected.Schemas
+		SccProjectUniqueName13 = Connected.Dispatcher\\Connected.Dispatcher.csproj
+		SccProjectTopLevelParentUniqueName13 = Connected.sln
+		SccProjectName13 = Connected.Dispatcher
+		SccLocalPath13 = Connected.Dispatcher
+		SccProjectUniqueName14 = Connected.RouteFinder\\Connected.RouteFinder.csproj
+		SccProjectTopLevelParentUniqueName14 = Connected.sln
+		SccProjectName14 = Connected.RouteFinder
+		SccLocalPath14 = Connected.RouteFinder
+		SccProjectUniqueName15 = Connected.InboundWinService\\Connected.InboundWinService.csproj
+		SccProjectTopLevelParentUniqueName15 = Connected.sln
+		SccProjectName15 = Connected.InboundWinService
+		SccLocalPath15 = Connected.InboundWinService
+		SccProjectUniqueName16 = Connected.DispatcherWinService\\Connected.DispatcherWinService.csproj
+		SccProjectTopLevelParentUniqueName16 = Connected.sln
+		SccProjectName16 = Connected.DispatcherWinService
+		SccLocalPath16 = Connected.DispatcherWinService
+		SccProjectUniqueName17 = Connected.RouteFinderWinService\\Connected.RouteFinderWinService.csproj
+		SccProjectTopLevelParentUniqueName17 = Connected.sln
+		SccProjectName17 = Connected.RouteFinderWinService
+		SccLocalPath17 = Connected.RouteFinderWinService
+		SccProjectUniqueName18 = Connected.Schemas.Common\\Connected.Schemas.Common.csproj
+		SccProjectTopLevelParentUniqueName18 = Connected.sln
+		SccProjectName18 = Connected.Schemas.Common
+		SccLocalPath18 = Connected.Schemas.Common
+		SccProjectUniqueName19 = Connected.DAL.CrossCutting\\Connected.DAL.CrossCutting.csproj
+		SccProjectTopLevelParentUniqueName19 = Connected.sln
+		SccProjectName19 = Connected.DAL.CrossCutting
+		SccLocalPath19 = Connected.DAL.CrossCutting
+		SccProjectUniqueName20 = Connected.DAL.DbTriggers.AdapterTypeTriggers\\Connected.DAL.DbTriggers.AdapterTypeTriggers.csproj
+		SccProjectTopLevelParentUniqueName20 = Connected.sln
+		SccProjectName20 = Connected.DAL.DbTriggers.AdapterTypeTriggers
+		SccLocalPath20 = Connected.DAL.DbTriggers.AdapterTypeTriggers
+		SccProjectUniqueName21 = Connected.DAL.Core\\Connected.DAL.Core.csproj
+		SccProjectTopLevelParentUniqueName21 = Connected.sln
+		SccProjectName21 = Connected.DAL.Core
+		SccLocalPath21 = Connected.DAL.Core
+		SccProjectUniqueName22 = Connected.DAL.DbTriggers.BasicAdapterTrigger\\Connected.DAL.DbTriggers.AdapterBasicTriggers.csproj
+		SccProjectTopLevelParentUniqueName22 = Connected.sln
+		SccProjectName22 = Connected.DAL.DbTriggers.BasicAdapterTrigger
+		SccLocalPath22 = Connected.DAL.DbTriggers.BasicAdapterTrigger
+		SccProjectUniqueName23 = Tests.Connected.DAL\\Tests.Connected.DAL.csproj
+		SccProjectTopLevelParentUniqueName23 = Connected.sln
+		SccProjectName23 = Tests.Connected.DAL
+		SccLocalPath23 = Tests.Connected.DAL
+		SccProjectUniqueName24 = Tests.Connected.DAL.Core\\Connected.DAL.Core.Tests.csproj
+		SccProjectTopLevelParentUniqueName24 = Connected.sln
+		SccProjectName24 = Tests.Connected.DAL.Core
+		SccLocalPath24 = Tests.Connected.DAL.Core
+		SccProjectUniqueName25 = Connected.Common.Tests\\Connected.Common.Tests.csproj
+		SccProjectTopLevelParentUniqueName25 = Connected.sln
+		SccProjectName25 = Connected.Common.Tests
+		SccLocalPath25 = Connected.Common.Tests
+		SccProjectUniqueName26 = Connected.Tests.TestAssets\\Connected.Tests.TestAssets.csproj
+		SccProjectTopLevelParentUniqueName26 = Connected.sln
+		SccProjectName26 = Connected.Tests.TestAssets
+		SccLocalPath26 = Connected.Tests.TestAssets
+		SccProjectUniqueName27 = Connected.DAL.DbTriggers.SampleTriggerReader\\Connected.DAL.DbTriggers.SampleTriggerReader.csproj
+		SccProjectTopLevelParentUniqueName27 = Connected.sln
+		SccProjectName27 = Connected.DAL.DbTriggers.SampleTriggerReader
+		SccLocalPath27 = Connected.DAL.DbTriggers.SampleTriggerReader
+		SccProjectUniqueName28 = Connected.ModuleManager\\Connected.ModuleManager.csproj
+		SccProjectTopLevelParentUniqueName28 = Connected.sln
+		SccProjectName28 = Connected.ModuleManager
+		SccLocalPath28 = Connected.ModuleManager
+		SccProjectUniqueName29 = Connected.Configuration.WebApp\\Connected.Configuration.WebApp.csproj
+		SccProjectTopLevelParentUniqueName29 = Connected.sln
+		SccProjectName29 = Connected.Configuration.WebApp
+		SccLocalPath29 = Connected.Configuration.WebApp
+		SccProjectUniqueName30 = Connected.DAL.Tests\\Connected.DAL.Tests.csproj
+		SccProjectTopLevelParentUniqueName30 = Connected.sln
+		SccProjectName30 = Connected.DAL.Tests
+		SccLocalPath30 = Connected.DAL.Tests
+		SccProjectUniqueName31 = Connected.Configuration.Plugins.Sample1\\Connected.Configuration.WebApp.Plugins.Sample1.csproj
+		SccProjectTopLevelParentUniqueName31 = Connected.sln
+		SccProjectName31 = Connected.Configuration.Plugins.Sample1
+		SccLocalPath31 = Connected.Configuration.Plugins.Sample1
+		SccProjectUniqueName32 = Connected.Configuration.Plugins.AnotherPlugin\\Connected.Configuration.WebApp.Plugins.AnotherPlugin.csproj
+		SccProjectTopLevelParentUniqueName32 = Connected.sln
+		SccProjectName32 = Connected.Configuration.Plugins.AnotherPlugin
+		SccLocalPath32 = Connected.Configuration.Plugins.AnotherPlugin
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFC7A240-055B-4B58-A0E8-647AA1A9E772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC7A240-055B-4B58-A0E8-647AA1A9E772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFC7A240-055B-4B58-A0E8-647AA1A9E772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFC7A240-055B-4B58-A0E8-647AA1A9E772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{314B7DE1-2009-42A8-8D65-ECA37B481BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{314B7DE1-2009-42A8-8D65-ECA37B481BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{314B7DE1-2009-42A8-8D65-ECA37B481BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{314B7DE1-2009-42A8-8D65-ECA37B481BF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0538AC73-79A0-4DA1-8032-4AB577F9938D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0538AC73-79A0-4DA1-8032-4AB577F9938D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0538AC73-79A0-4DA1-8032-4AB577F9938D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0538AC73-79A0-4DA1-8032-4AB577F9938D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15A9F1C6-87F8-4E7A-A9F9-7C2D43A30189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15A9F1C6-87F8-4E7A-A9F9-7C2D43A30189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15A9F1C6-87F8-4E7A-A9F9-7C2D43A30189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15A9F1C6-87F8-4E7A-A9F9-7C2D43A30189}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C5FDC4B-B34A-4419-9189-2573F6FC6D1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C5FDC4B-B34A-4419-9189-2573F6FC6D1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C5FDC4B-B34A-4419-9189-2573F6FC6D1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C5FDC4B-B34A-4419-9189-2573F6FC6D1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{229B1BDF-B647-4F85-BFDF-29CA7EADCE55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{229B1BDF-B647-4F85-BFDF-29CA7EADCE55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{229B1BDF-B647-4F85-BFDF-29CA7EADCE55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{229B1BDF-B647-4F85-BFDF-29CA7EADCE55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AEE8285-8DD1-46E3-B369-FFEC752AF74D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AEE8285-8DD1-46E3-B369-FFEC752AF74D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AEE8285-8DD1-46E3-B369-FFEC752AF74D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AEE8285-8DD1-46E3-B369-FFEC752AF74D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2753B32-0236-49B5-8919-BC70AF870058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2753B32-0236-49B5-8919-BC70AF870058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2753B32-0236-49B5-8919-BC70AF870058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2753B32-0236-49B5-8919-BC70AF870058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E94F4952-D838-4CB8-9613-6DF33B43DD20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E94F4952-D838-4CB8-9613-6DF33B43DD20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E94F4952-D838-4CB8-9613-6DF33B43DD20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E94F4952-D838-4CB8-9613-6DF33B43DD20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E125D2E1-A081-43DF-8E94-1F00065BB0E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E125D2E1-A081-43DF-8E94-1F00065BB0E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E125D2E1-A081-43DF-8E94-1F00065BB0E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E125D2E1-A081-43DF-8E94-1F00065BB0E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5987AA2-21BB-4977-8DDD-096A636345AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5987AA2-21BB-4977-8DDD-096A636345AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5987AA2-21BB-4977-8DDD-096A636345AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5987AA2-21BB-4977-8DDD-096A636345AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6D444B2-95DA-47F9-99F9-CEC8F23D76D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6D444B2-95DA-47F9-99F9-CEC8F23D76D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6D444B2-95DA-47F9-99F9-CEC8F23D76D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6D444B2-95DA-47F9-99F9-CEC8F23D76D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE06DC03-324A-4517-8BDB-81E6F8883FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE06DC03-324A-4517-8BDB-81E6F8883FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE06DC03-324A-4517-8BDB-81E6F8883FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE06DC03-324A-4517-8BDB-81E6F8883FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7664FD43-22AF-47E9-9333-BE897314C7FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7664FD43-22AF-47E9-9333-BE897314C7FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7664FD43-22AF-47E9-9333-BE897314C7FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7664FD43-22AF-47E9-9333-BE897314C7FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{220719C5-A5B7-4322-BDA4-E04FDF1B8EEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{220719C5-A5B7-4322-BDA4-E04FDF1B8EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{220719C5-A5B7-4322-BDA4-E04FDF1B8EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{220719C5-A5B7-4322-BDA4-E04FDF1B8EEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA014F60-115C-4EB2-A38B-9825A3DCE5E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA014F60-115C-4EB2-A38B-9825A3DCE5E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA014F60-115C-4EB2-A38B-9825A3DCE5E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA014F60-115C-4EB2-A38B-9825A3DCE5E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F25B018-036E-4C89-B1EF-37E851B79057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F25B018-036E-4C89-B1EF-37E851B79057}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F25B018-036E-4C89-B1EF-37E851B79057}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F25B018-036E-4C89-B1EF-37E851B79057}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BF001E7-9AF7-4B92-B89F-EB6257EAAB01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BF001E7-9AF7-4B92-B89F-EB6257EAAB01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BF001E7-9AF7-4B92-B89F-EB6257EAAB01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BF001E7-9AF7-4B92-B89F-EB6257EAAB01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78379B3A-349F-43F1-AE43-A9067E30E02F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78379B3A-349F-43F1-AE43-A9067E30E02F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78379B3A-349F-43F1-AE43-A9067E30E02F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78379B3A-349F-43F1-AE43-A9067E30E02F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E91F69C-11B1-42EF-8A54-8B678E379EAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E91F69C-11B1-42EF-8A54-8B678E379EAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E91F69C-11B1-42EF-8A54-8B678E379EAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E91F69C-11B1-42EF-8A54-8B678E379EAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C3E813B-85D1-46B7-BE2B-E36E5A95761F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C3E813B-85D1-46B7-BE2B-E36E5A95761F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C3E813B-85D1-46B7-BE2B-E36E5A95761F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C3E813B-85D1-46B7-BE2B-E36E5A95761F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8971BBEC-5592-41FB-AC99-9F6464BFBF76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8971BBEC-5592-41FB-AC99-9F6464BFBF76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8971BBEC-5592-41FB-AC99-9F6464BFBF76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8971BBEC-5592-41FB-AC99-9F6464BFBF76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E65880FE-6EB3-4BA0-8284-9394C6A37380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E65880FE-6EB3-4BA0-8284-9394C6A37380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E65880FE-6EB3-4BA0-8284-9394C6A37380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E65880FE-6EB3-4BA0-8284-9394C6A37380}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B493F1A-1394-4477-B547-6314C6E7B88F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B493F1A-1394-4477-B547-6314C6E7B88F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B493F1A-1394-4477-B547-6314C6E7B88F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B493F1A-1394-4477-B547-6314C6E7B88F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{421DC169-3F87-4D4C-9DA3-6173F5C45D98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{421DC169-3F87-4D4C-9DA3-6173F5C45D98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{421DC169-3F87-4D4C-9DA3-6173F5C45D98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{421DC169-3F87-4D4C-9DA3-6173F5C45D98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C648F6B-4659-4242-B324-03D3A46770DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C648F6B-4659-4242-B324-03D3A46770DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C648F6B-4659-4242-B324-03D3A46770DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C648F6B-4659-4242-B324-03D3A46770DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E841C8A6-CEF0-43CF-85E0-9135FC4240F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E841C8A6-CEF0-43CF-85E0-9135FC4240F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E841C8A6-CEF0-43CF-85E0-9135FC4240F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E841C8A6-CEF0-43CF-85E0-9135FC4240F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71BC2FEC-E864-4C32-8D7D-28228F3ADD5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71BC2FEC-E864-4C32-8D7D-28228F3ADD5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71BC2FEC-E864-4C32-8D7D-28228F3ADD5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71BC2FEC-E864-4C32-8D7D-28228F3ADD5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF780D3F-3431-4F39-A597-CA3DE476E240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF780D3F-3431-4F39-A597-CA3DE476E240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF780D3F-3431-4F39-A597-CA3DE476E240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF780D3F-3431-4F39-A597-CA3DE476E240}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D43278BD-4631-4836-B085-735E0C7D16C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D43278BD-4631-4836-B085-735E0C7D16C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D43278BD-4631-4836-B085-735E0C7D16C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D43278BD-4631-4836-B085-735E0C7D16C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0BDB1BA-AA1A-46F5-92A9-A5EC45E97D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0BDB1BA-AA1A-46F5-92A9-A5EC45E97D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0BDB1BA-AA1A-46F5-92A9-A5EC45E97D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0BDB1BA-AA1A-46F5-92A9-A5EC45E97D6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B317A968-F66A-430D-935C-75721349ABB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B317A968-F66A-430D-935C-75721349ABB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B317A968-F66A-430D-935C-75721349ABB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B317A968-F66A-430D-935C-75721349ABB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AFC7A240-055B-4B58-A0E8-647AA1A9E772} = {96894C3F-9D04-4BF0-9D51-7C289073E99B}
+		{314B7DE1-2009-42A8-8D65-ECA37B481BF7} = {96894C3F-9D04-4BF0-9D51-7C289073E99B}
+		{0538AC73-79A0-4DA1-8032-4AB577F9938D} = {96894C3F-9D04-4BF0-9D51-7C289073E99B}
+		{15A9F1C6-87F8-4E7A-A9F9-7C2D43A30189} = {96894C3F-9D04-4BF0-9D51-7C289073E99B}
+		{3C5FDC4B-B34A-4419-9189-2573F6FC6D1F} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{229B1BDF-B647-4F85-BFDF-29CA7EADCE55} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{4AEE8285-8DD1-46E3-B369-FFEC752AF74D} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{D2753B32-0236-49B5-8919-BC70AF870058} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{E94F4952-D838-4CB8-9613-6DF33B43DD20} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{E125D2E1-A081-43DF-8E94-1F00065BB0E2} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{D5987AA2-21BB-4977-8DDD-096A636345AA} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{D6D444B2-95DA-47F9-99F9-CEC8F23D76D1} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{EE06DC03-324A-4517-8BDB-81E6F8883FEE} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{7664FD43-22AF-47E9-9333-BE897314C7FD} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{220719C5-A5B7-4322-BDA4-E04FDF1B8EEF} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{AA014F60-115C-4EB2-A38B-9825A3DCE5E4} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{4F25B018-036E-4C89-B1EF-37E851B79057} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{9BF001E7-9AF7-4B92-B89F-EB6257EAAB01} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{78379B3A-349F-43F1-AE43-A9067E30E02F} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{DEDDF8F9-3AC6-4669-813F-B7197F88CB3E} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{0E91F69C-11B1-42EF-8A54-8B678E379EAA} = {DEDDF8F9-3AC6-4669-813F-B7197F88CB3E}
+		{4C3E813B-85D1-46B7-BE2B-E36E5A95761F} = {DEDDF8F9-3AC6-4669-813F-B7197F88CB3E}
+		{8971BBEC-5592-41FB-AC99-9F6464BFBF76} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{E65880FE-6EB3-4BA0-8284-9394C6A37380} = {6967A5E9-E237-4D50-843B-8C14CDB9F50A}
+		{8B493F1A-1394-4477-B547-6314C6E7B88F} = {6967A5E9-E237-4D50-843B-8C14CDB9F50A}
+		{421DC169-3F87-4D4C-9DA3-6173F5C45D98} = {6967A5E9-E237-4D50-843B-8C14CDB9F50A}
+		{8C648F6B-4659-4242-B324-03D3A46770DB} = {6967A5E9-E237-4D50-843B-8C14CDB9F50A}
+		{ECC10173-D5F0-4C39-9741-2A75339E5F4F} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{E841C8A6-CEF0-43CF-85E0-9135FC4240F4} = {DEDDF8F9-3AC6-4669-813F-B7197F88CB3E}
+		{71BC2FEC-E864-4C32-8D7D-28228F3ADD5B} = {CE180A66-7EFC-40E7-93AC-129E9AD6AE3E}
+		{EF780D3F-3431-4F39-A597-CA3DE476E240} = {0026C1C4-F7E6-44B0-808B-2D4A3E1B0AF3}
+		{D43278BD-4631-4836-B085-735E0C7D16C4} = {6967A5E9-E237-4D50-843B-8C14CDB9F50A}
+		{11C06B79-2B5F-4ADE-8FA4-60FC3B03B9E3} = {0026C1C4-F7E6-44B0-808B-2D4A3E1B0AF3}
+		{B0BDB1BA-AA1A-46F5-92A9-A5EC45E97D6E} = {11C06B79-2B5F-4ADE-8FA4-60FC3B03B9E3}
+		{B317A968-F66A-430D-935C-75721349ABB2} = {11C06B79-2B5F-4ADE-8FA4-60FC3B03B9E3}
+		{F3BFEBB8-CEBD-419D-A8B0-228BB9F29ABB} = {F5CE509C-A208-43D4-950C-42D86B8B475E}
+		{2323A480-6255-45EB-B26E-5DC89818856B} = {F5CE509C-A208-43D4-950C-42D86B8B475E}
+		{F6912BB6-92C9-4700-A1C2-86D194A2D6AE} = {F5CE509C-A208-43D4-950C-42D86B8B475E}
+		{DBE57B2A-A97B-4A15-9D48-2BDDC46A31CF} = {F5CE509C-A208-43D4-950C-42D86B8B475E}
+		{F54BA974-4FC9-404D-A0E4-3CE066FD62A9} = {F5CE509C-A208-43D4-950C-42D86B8B475E}
+	EndGlobalSection
+EndGlobal

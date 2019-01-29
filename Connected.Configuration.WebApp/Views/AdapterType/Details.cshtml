@@ -1,0 +1,21 @@
+﻿@model Connected.Configuration.WebApp.ViewModel.AdapterTypeViewModel
+
+@{
+    ViewBag.Title = "Adapter Type Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Adapter Type Details</h2>
+
+<div>
+    <h4>ADapter Type Details </h4>
+    <hr/>
+
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.AdapterType)</dt>
+        <dd>@Html.DisplayFor(model => model.AdapterType)</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id}) | @Html.ActionLink("Back to list", "Index")
+</p>

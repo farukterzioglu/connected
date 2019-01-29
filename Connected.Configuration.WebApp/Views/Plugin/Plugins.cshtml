@@ -1,0 +1,54 @@
+﻿@model Connected.Configuration.WebApp.ViewModel.PluginViewModel
+@{
+    ViewBag.Title = "Plugins";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Plugins</h2>
+
+<div class="row">
+    <div class="col-md-4">
+
+        @foreach (var plugin in Model.PluginList)
+        {
+            @plugin.PluginName
+            <ul>
+                @if (plugin.ControllerTypes != null)
+                {
+                    foreach (var controller in plugin.ControllerTypes)
+                    {
+                        <li>
+                            @Html.ActionLink(@controller.Name, "Index", @controller.Name)
+                            @*@Html.RouteLink(controller.Name, "Module", new {controller = controller, action = "Index",})*@
+                        </li>
+                    }
+                }
+            </ul>
+            
+            @*<br/>
+            @Html.RouteLink(@plugin.PluginName, @plugin.PluginAssemblyName)
+            <br/>
+            @Html.ActionLink(@plugin.PluginName, "Index", @plugin.PluginAssemblyName)*@
+            
+            <hr/>
+            @*<ul>
+                @foreach (var dynamicController in plugin.ControllerList)
+                {
+                    <li>
+                        @Html.ActionLink(dynamicController, "Index", dynamicController.PluginName)
+                    </li>
+                }
+
+                <li>
+                    @Html.RouteLink("Sample 1 Route Link", "Sample 1")
+                </li>
+                <li>
+                </li>
+            </ul>*@
+        }
+        
+    </div>
+    <div class="col-md-8">
+        <p>Select a plugin to view</p>
+    </div>
+</div>

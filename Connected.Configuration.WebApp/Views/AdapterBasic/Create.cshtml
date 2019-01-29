@@ -1,0 +1,17 @@
+﻿@model Connected.Configuration.WebApp.ViewModel.AdapterBasicViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create New Adapter</h2>
+
+@{
+    Html.RenderPartial("~/Views/AdapterBasic/AdapterBasicForm.cshtml");
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

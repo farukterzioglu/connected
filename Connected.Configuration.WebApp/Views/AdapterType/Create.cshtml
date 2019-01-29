@@ -1,0 +1,32 @@
+﻿@model Connected.Configuration.WebApp.ViewModel.AdapterTypeViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create New Adapter Type</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>New Adapter Type</h4>
+        <hr/>
+        @Html.ValidationSummary(false, "", new {@class="text-danger"})
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AdapterType, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AdapterType, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.AdapterType, "", htmlAttributes: new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>   
+}
+
